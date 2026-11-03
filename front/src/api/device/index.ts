@@ -1,1 +1,0 @@
-export {devicesApi} from './device';

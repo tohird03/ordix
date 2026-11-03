@@ -1,1 +1,0 @@
-export {RegexNotification} from './RegexNotification';

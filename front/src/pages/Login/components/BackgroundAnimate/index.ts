@@ -1,1 +1,0 @@
-export {BackgroundAnimate} from './BackgroundAnimate';
