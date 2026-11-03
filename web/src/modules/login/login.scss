@@ -1,0 +1,137 @@
+$orange: #f26a2e;
+$black: #111111;
+$bg: #f7f5f3;
+$muted: #8a8a8a;
+$field: #f7f5f3;
+
+body {
+  margin: 0;
+  background: $bg;
+}
+
+.login-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  background: $bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  background: #fff;
+  border-radius: 28px;
+  padding: 48px 44px 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+
+  .login-title.ant-typography {
+    margin: 0 0 8px;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .login-subtitle {
+    display: block;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: $muted;
+  }
+
+  .login-footer {
+    display: block;
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    color: #b0b0b0;
+  }
+}
+
+/* ---------- Form ---------- */
+.login-form {
+  .ant-form-item-label > label {
+    font-weight: 500;
+    color: #555;
+  }
+
+  .login-icon {
+    margin-right: 4px;
+    color: #aaa;
+  }
+
+  .ant-input-affix-wrapper,
+  .ant-input-group-addon {
+    background: $field;
+    border-color: transparent;
+  }
+
+  .ant-input-group-addon {
+    border-radius: 14px 0 0 14px;
+    font-weight: 600;
+    color: $black;
+  }
+
+  .ant-input-group .ant-input-affix-wrapper {
+    border-radius: 0 14px 14px 0;
+  }
+
+  .ant-input-affix-wrapper {
+    input {
+      background: transparent;
+    }
+
+    &:hover,
+    &-focused {
+      background: #fff;
+      border-color: $orange;
+      box-shadow: 0 0 0 3px rgba($orange, 0.12);
+    }
+  }
+}
+
+.login-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 4px 0 24px;
+
+  .login-link {
+    color: $orange !important;
+    font-weight: 500;
+  }
+}
+
+.login-submit.ant-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: $black;
+  border-color: $black;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: none;
+
+  &:hover {
+    background: $orange !important;
+    border-color: $orange !important;
+  }
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 32px 22px 20px;
+
+    .login-title.ant-typography {
+      font-size: 30px;
+    }
+  }
+}

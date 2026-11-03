@@ -1,0 +1,34 @@
+enum DeviceStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  BLOCK
+}
+
+enum DeviceType {
+  DESKTOP
+  MOBILE
+  TABLET
+  OTHER
+}
+
+model Device {
+  id          Int          @id @default(autoincrement())
+  employeeId  String       @db.Uuid
+  employee    Employee     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  tokenHash   String       @unique
+  fingerprint String?
+  type        DeviceType   @default(OTHER)
+  browser     String?
+  os          String?
+  userAgent   String?
+  ip          String?
+  country     String?
+  city        String?
+  status      DeviceStatus @default(PENDING)
+  requestedAt DateTime     @default(now())
+  decidedAt   DateTime?
+  lastSeenAt  DateTime?
+
+  @@index([employeeId, status, fingerprint])
+}

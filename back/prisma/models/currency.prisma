@@ -1,0 +1,14 @@
+model Currency {
+  id           String   @id @default(uuid())
+  name         String
+  symbol       String   @unique   // UZS, USD...
+  exchangeRate Int                // 1 birlik = necha so'm (UZS uchun 1)
+  isDefault    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Product bilan teskari bog'lanish (bazada ustun yaratmaydi)
+  costProducts      Product[] @relation("ProductCost")
+  saleProducts      Product[] @relation("ProductSale")
+  wholesaleProducts Product[] @relation("ProductWholesale")
+}

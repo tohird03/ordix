@@ -1,0 +1,8 @@
+model Currency {
+  id           String   @id @default(uuid())
+  name         String
+  symbol       String   @unique @db.VarChar(10)
+  exchangeRate Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

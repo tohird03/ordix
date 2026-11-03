@@ -1,0 +1,7 @@
+model Warehouse {
+  id        String    @id @default(uuid())
+  name      String
+  isMain    Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  products  Product[]
+}

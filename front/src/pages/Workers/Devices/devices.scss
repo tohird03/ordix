@@ -1,0 +1,137 @@
+
+.device-management {
+  padding: 24px;
+  min-height: 100%;
+  background: #f5f7fa;
+
+  .device-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h3 {
+      margin: 0 0 6px;
+    }
+  }
+
+  .device-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .device-stat-card {
+    border-radius: 12px;
+
+    .ant-card-body {
+      padding: 20px;
+    }
+
+    h2 {
+      margin: 12px 0;
+    }
+  }
+
+  .device-main-card {
+    border-radius: 12px;
+
+    .ant-card-body {
+      padding: 16px 24px 24px;
+    }
+  }
+
+  .device-employee-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .device-employee-card {
+    border-radius: 10px;
+    overflow: hidden;
+
+    .ant-card-head {
+      min-height: 72px;
+      background: #fafbfc;
+    }
+
+    .ant-card-body {
+      padding: 0;
+    }
+
+    .ant-table {
+      background: transparent;
+    }
+  }
+
+  .device-employee-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    .device-employee-info {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ant-tag {
+      margin-inline-end: 0;
+    }
+  }
+
+  .device-avatar {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #eaf1ff;
+    color: #2864dc;
+    font-size: 18px;
+  }
+
+  .device-icon {
+    color: #526581;
+    font-size: 17px;
+  }
+
+  .device-muted-icon {
+    color: #8c98a9;
+  }
+
+  .device-empty {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .device-management {
+    padding: 12px;
+
+    .device-stats {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .device-stat-card .ant-card-body {
+      padding: 14px 16px;
+    }
+
+    .device-main-card > .ant-card-body {
+      padding: 8px 12px 16px;
+    }
+
+    .device-employee-heading {
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+  }
+}

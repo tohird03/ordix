@@ -1,0 +1,62 @@
+:root {
+  --accent: #f2622b;
+  --accent-grad: linear-gradient(135deg, #ff7a45, #e8481c);
+  --ink: #111111;
+  --muted: #8c8c94;
+  --page: #f4f4f5;
+  --surface: #ffffff;
+  --tile: #f5f5f6;
+  --hover: #f1f1f2;
+  --text-2: #4a4a52;
+  --fill-strong: #111111;
+  --on-fill: #ffffff;
+  --track-a: #e6e6e8;
+  --track-b: #f2f2f3;
+  --chip-up-bg: #e3f6ec;
+  --chip-down-bg: #fde8e8;
+  --overlay: rgba(17, 17, 17, 0.4);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 20px rgba(0, 0, 0, 0.05);
+  --flyout-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  --ink: #f4f4f5;
+  --muted: #9a9aa3;
+  --page: #0e0e10;
+  --surface: #18181b;
+  --tile: #222226;
+  --hover: #26262b;
+  --text-2: #c9c9d0;
+  --fill-strong: #f4f4f5;
+  --on-fill: #111111;
+  --track-a: #2e2e33;
+  --track-b: #222226;
+  --chip-up-bg: rgba(47, 163, 107, 0.18);
+  --chip-down-bg: rgba(229, 72, 77, 0.18);
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.35);
+  --flyout-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+html { scrollbar-gutter: stable; }
+body { background: var(--page); color: var(--ink); }
+body.nav-open { overflow: hidden; }
+
+.pill {
+  height: 52px; padding: 0 18px; display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 0; border-radius: 999px; box-shadow: var(--shadow); color: var(--ink);
+}
+.o-card { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 20px; height: 100%; min-width: 0; }
+.ant-card { box-shadow: var(--shadow); }
+.card-title { font-weight: 600; font-size: 16px; }
+.muted { color: var(--muted); font-size: 13px; }
+.row-between { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.chip.up { background: var(--chip-up-bg); color: #1f9d63; }
+.chip.down { background: var(--chip-down-bg); color: #e5484d; }
+.btn-pill {
+  height: 44px; padding: 0 22px; border: 0; border-radius: 999px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+}
+.btn-dark { background: var(--fill-strong); color: var(--on-fill); }
+.btn-light { background: var(--hover); color: var(--ink); }
