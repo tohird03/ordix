@@ -1,0 +1,110 @@
+import { makeAutoObservable } from 'mobx';
+import { addNotification } from '@/shared/utils/addNotification';
+import { IGetProductsParams, IGetSingleProductParams, IProducts, ISingleProductStory, ISingleProductStoryCount } from '@/shared/api/product/types';
+import { productsApi } from '@/shared/api/product/product';
+
+class ProductsListStore {
+  #today = new Date();
+
+  pageNumber = 1;
+  pageSize = 100;
+  search: string | null = null;
+  isOpenAddEditProductModal = false;
+  singleProduct: IProducts | null = null;
+  singleProductStory: ISingleProductStory[] | null = null;
+  singleProductStoryCount: ISingleProductStoryCount | null = null;
+  startDate: Date | null = this.#today;
+  endDate: Date | null = this.#today;
+  productId: null | string = null;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  getProducts = (params: IGetProductsParams) =>
+    productsApi.getProducts(params)
+      .then(res => res)
+      .catch(addNotification);
+
+  getSingleProductStory = (params: IGetSingleProductParams) =>
+    productsApi.getSingleProductStory(params)
+      .then(res => {
+        this.setSingleProductStory(res?.data?.data);
+
+        return res;
+      })
+      .catch(addNotification);
+
+  getSingleProductsCount = (params: IGetSingleProductParams) =>
+    productsApi.getSingleProductStoryCounts(params)
+      .then(res => {
+        this.setSingleProductStoryCount(res?.data[0]);
+
+        return res;
+      })
+      .catch(addNotification);
+
+  getSingleProductStoryCount = (params: IGetSingleProductParams) =>
+    productsApi.getSingleProductStory(params)
+      .then(res => {
+        this.setSingleProductStory(res?.data?.data);
+
+        return res;
+      })
+      .catch(addNotification);
+
+  getSingleProducts = (productId: string) =>
+    productsApi.getSingleProducts(productId)
+      .then(res => {
+        this.setSingleProduct(res?.data);
+      })
+      .catch(addNotification);
+
+  setSingleProductStory = (singleProductStory: ISingleProductStory[]) => {
+    this.singleProductStory = singleProductStory;
+  };
+
+  setSingleProductStoryCount = (singleProductStoryCount: ISingleProductStoryCount) => {
+    this.singleProductStoryCount = singleProductStoryCount;
+  };
+
+  setPageNumber = (pageNumber: number) => {
+    this.pageNumber = pageNumber;
+  };
+
+  setPageSize = (pageSize: number) => {
+    this.pageSize = pageSize;
+  };
+
+  setSearch = (search: string | null) => {
+    this.search = search;
+  };
+
+  setIsOpenAddEditProductModal = (isOpenAddEditProductModal: boolean) => {
+    this.isOpenAddEditProductModal = isOpenAddEditProductModal;
+  };
+
+  setSingleProduct = (singleProduct: IProducts | null) => {
+    this.singleProduct = singleProduct;
+  };
+
+  setStartDate = (startDate: Date | null) => {
+    this.startDate = startDate;
+  };
+
+  setEndDate = (endDate: Date | null) => {
+    this.endDate = endDate;
+  };
+
+  setProductId = (productId: string | null) => {
+    this.productId = productId;
+  };
+
+  reset() {
+    this.pageNumber = 1;
+    this.pageSize = 100;
+    this.search = null;
+  }
+}
+
+export const productsListStore = new ProductsListStore();

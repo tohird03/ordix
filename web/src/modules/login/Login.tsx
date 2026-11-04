@@ -11,6 +11,7 @@ import { ROUTES } from '@/router/links';
 import { addNotification } from '@/shared/utils/addNotification';
 import { authApi } from '@/shared/api/auth';
 import { AxiosError } from 'axios';
+import { observer } from 'mobx-react';
 
 const { Title, Text, Link } = Typography;
 
@@ -33,7 +34,7 @@ const POLL_INTERVAL_MS = 5000;
 
 type Stage = 'checking' | 'form' | 'waiting';
 
-export const Login: React.FC<LoginProps> = ({ onLogin }) => {
+export const Login = observer(() => {
   const [form] = Form.useForm<LoginFormValues>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -222,4 +223,4 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
       </div>
     </ConfigProvider>
   );
-};
+})

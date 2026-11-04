@@ -9,7 +9,7 @@ import { currencyColumn } from './constants';
 import { AddEditCurrencyModal } from './AddEditModal';
 import { currencyStore } from '@/stores/workers';
 
-const CurrenciesPage = observer(function CurrenciesPage() {
+export const CurrenciesPage = observer(function CurrenciesPage() {
   const { data: currencyData, isLoading: loading } = useQuery({
     queryKey: ['getCurrency'],
     queryFn: () =>
@@ -52,5 +52,3 @@ const CurrenciesPage = observer(function CurrenciesPage() {
     </>
   );
 });
-
-export default CurrenciesPage;

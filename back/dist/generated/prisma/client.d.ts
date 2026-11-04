@@ -10,3 +10,4 @@ export type Currency = Prisma.CurrencyModel;
 export type Device = Prisma.DeviceModel;
 export type Employee = Prisma.EmployeeModel;
 export type Product = Prisma.ProductModel;
+export type Warehouse = Prisma.WarehouseModel;

@@ -1,40 +1,48 @@
-import { Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString, IsUUID, Min } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import { IsInt, IsNumber, IsOptional, IsString, IsUUID, Length, MaxLength, Min } from 'class-validator';
 
-// Frontend FormData yuboradi (rasm bor), shuning uchun hamma qiymat string keladi.
-// @Type(() => Number) ularni songa aylantiradi.
 export class CreateProductDto {
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
-  name: string;
+  @Length(1, 200)
+  name!: string;
 
   @IsOptional()
   @IsString()
+  @MaxLength(2000)
   description?: string;
 
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  count!: number;
+
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  minAmount!: number;
+
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Min(0)
+  prices_cost_price!: number;
+
   @IsUUID()
-  warehouseId: string;
+  prices_cost_currencyId!: string;
 
-  @Type(() => Number) @IsNumber() @Min(0)
-  count: number;
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Min(0)
+  prices_selling_price!: number;
 
-  @Type(() => Number) @IsNumber() @Min(0)
-  minAmount: number;
+  @IsUUID()
+  prices_selling_currencyId!: string;
 
-  @Type(() => Number) @IsNumber() @Min(0)
-  prices_cost_price: number;
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Min(0)
+  prices_wholesale_price!: number;
 
-  @IsOptional() @IsUUID()
-  prices_cost_currencyId?: string;
-
-  @Type(() => Number) @IsNumber() @Min(0)
-  prices_selling_price: number;
-
-  @IsOptional() @IsUUID()
-  prices_selling_currencyId?: string;
-
-  @Type(() => Number) @IsNumber() @Min(0)
-  prices_wholesale_price: number;
-
-  @IsOptional() @IsUUID()
-  prices_wholesale_currencyId?: string;
+  @IsUUID()
+  prices_wholesale_currencyId!: string;
 }

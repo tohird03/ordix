@@ -1,15 +1,13 @@
 import React, { Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
-import ComingSoonPage from '../modules/common/pages/ComingSoonPage';
 import CustomersPage from '../modules/customers/pages/CustomersPage';
-import CurrenciesPage from '../modules/currencies/CurrenciesPage';
 import DashboardPage from '../modules/dashboard/pages/DashboardPage';
 import { ROUTES } from './links';
 import { ProtectedRoutes } from './ProtectedRoutes';
 import { Loading } from '@/components/Loading';
 import { PublicRoutes } from './PublicRoutes';
-import { Login } from './lazy';
+import { CurrencyPage, LoginPage, ProductsList } from './lazy';
 
 type Props = {
   isAuth: boolean | null;
@@ -34,8 +32,12 @@ export const Router = ({ isAuth }: Props) => useRoutes([
             path: ROUTES.clientsInfo,
           },
           {
-            element: <Suspense fallback={<Loading />}><CurrenciesPage /></Suspense>,
+            element: <Suspense fallback={<Loading />}><CurrencyPage /></Suspense>,
             path: ROUTES.currency,
+          },
+          {
+            element: <Suspense fallback={<Loading />}><ProductsList /></Suspense>,
+            path: ROUTES.productList,
           },
 
           // SETTINGS
@@ -57,7 +59,7 @@ export const Router = ({ isAuth }: Props) => useRoutes([
     children: [
       {
         index: true,
-        element: <Suspense fallback={<Loading />}><Login /></Suspense>,
+        element: <Suspense fallback={<Loading />}><LoginPage /></Suspense>,
       },
     ],
   },

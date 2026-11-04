@@ -297,9 +297,9 @@ export type CurrencyMinOrderByAggregateInput = {
 export type CurrencySumOrderByAggregateInput = {
     exchangeRate?: Prisma.SortOrder;
 };
-export type CurrencyNullableScalarRelationFilter = {
-    is?: Prisma.CurrencyWhereInput | null;
-    isNot?: Prisma.CurrencyWhereInput | null;
+export type CurrencyScalarRelationFilter = {
+    is?: Prisma.CurrencyWhereInput;
+    isNot?: Prisma.CurrencyWhereInput;
 };
 export type StringFieldUpdateOperationsInput = {
     set?: string;
@@ -332,30 +332,24 @@ export type CurrencyCreateNestedOneWithoutWholesaleProductsInput = {
     connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutWholesaleProductsInput;
     connect?: Prisma.CurrencyWhereUniqueInput;
 };
-export type CurrencyUpdateOneWithoutCostProductsNestedInput = {
+export type CurrencyUpdateOneRequiredWithoutCostProductsNestedInput = {
     create?: Prisma.XOR<Prisma.CurrencyCreateWithoutCostProductsInput, Prisma.CurrencyUncheckedCreateWithoutCostProductsInput>;
     connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutCostProductsInput;
     upsert?: Prisma.CurrencyUpsertWithoutCostProductsInput;
-    disconnect?: Prisma.CurrencyWhereInput | boolean;
-    delete?: Prisma.CurrencyWhereInput | boolean;
     connect?: Prisma.CurrencyWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutCostProductsInput, Prisma.CurrencyUpdateWithoutCostProductsInput>, Prisma.CurrencyUncheckedUpdateWithoutCostProductsInput>;
 };
-export type CurrencyUpdateOneWithoutSaleProductsNestedInput = {
+export type CurrencyUpdateOneRequiredWithoutSaleProductsNestedInput = {
     create?: Prisma.XOR<Prisma.CurrencyCreateWithoutSaleProductsInput, Prisma.CurrencyUncheckedCreateWithoutSaleProductsInput>;
     connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutSaleProductsInput;
     upsert?: Prisma.CurrencyUpsertWithoutSaleProductsInput;
-    disconnect?: Prisma.CurrencyWhereInput | boolean;
-    delete?: Prisma.CurrencyWhereInput | boolean;
     connect?: Prisma.CurrencyWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutSaleProductsInput, Prisma.CurrencyUpdateWithoutSaleProductsInput>, Prisma.CurrencyUncheckedUpdateWithoutSaleProductsInput>;
 };
-export type CurrencyUpdateOneWithoutWholesaleProductsNestedInput = {
+export type CurrencyUpdateOneRequiredWithoutWholesaleProductsNestedInput = {
     create?: Prisma.XOR<Prisma.CurrencyCreateWithoutWholesaleProductsInput, Prisma.CurrencyUncheckedCreateWithoutWholesaleProductsInput>;
     connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutWholesaleProductsInput;
     upsert?: Prisma.CurrencyUpsertWithoutWholesaleProductsInput;
-    disconnect?: Prisma.CurrencyWhereInput | boolean;
-    delete?: Prisma.CurrencyWhereInput | boolean;
     connect?: Prisma.CurrencyWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutWholesaleProductsInput, Prisma.CurrencyUpdateWithoutWholesaleProductsInput>, Prisma.CurrencyUncheckedUpdateWithoutWholesaleProductsInput>;
 };

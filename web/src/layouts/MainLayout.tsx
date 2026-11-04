@@ -6,6 +6,7 @@ import './layout.css';
 import MobileNav from './MobileNav';
 import SideRail from './SideRail';
 import TopBar from './TopBar';
+import React from 'react';
 
 export default function MainLayout() {
   const isMobile = Grid.useBreakpoint().lg === false;

@@ -1,15 +1,15 @@
 import { makeAutoObservable, observable } from 'mobx';
 import { MenuProps } from 'antd';
-import { IStaff } from '../profile/types';
 import { TokenType } from './types';
 import { authApi } from '@/shared/api/auth';
 import { addNotification } from '@/shared/utils/addNotification';
 import { ILoginForm } from '@/shared/api/auth/types';
+import { IStaffs } from '@/shared/api/staffs';
 
 class AuthStore {
   isAuth: boolean | null = false;
   token: TokenType | null = null;
-  staffInfo: IStaff | null = null;
+  staffInfo: IStaffs | null = null;
   mainMenuItems: MenuProps['items'] | null = null;
   isCloseDay = false;
 
@@ -43,7 +43,7 @@ class AuthStore {
     this.mainMenuItems = menuItems;
   };
 
-  setStaffInfo = (staffInfo: IStaff) => {
+  setStaffInfo = (staffInfo: IStaffs) => {
     this.staffInfo = staffInfo;
   };
 

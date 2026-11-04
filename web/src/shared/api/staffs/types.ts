@@ -1,3 +1,4 @@
+import { ICurrency } from '../currency/types';
 import {IPagination} from '../types';
 
 export interface IStaffs {
@@ -6,6 +7,8 @@ export interface IStaffs {
   fullName: string;
   phone: string;
   pages: EPageAccess[];
+  currency: ICurrency;
+  isSuperAdmin: boolean;
 }
 
 export interface IGetStaffsParams extends IPagination {

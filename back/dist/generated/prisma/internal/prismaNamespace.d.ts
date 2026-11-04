@@ -164,6 +164,7 @@ export declare const ModelName: {
     readonly Device: "Device";
     readonly Employee: "Employee";
     readonly Product: "Product";
+    readonly Warehouse: "Warehouse";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -176,7 +177,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "currency" | "device" | "employee" | "product";
+        modelProps: "currency" | "device" | "employee" | "product" | "warehouse";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -476,6 +477,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        Warehouse: {
+            payload: Prisma.$WarehousePayload<ExtArgs>;
+            fields: Prisma.WarehouseFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.WarehouseFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.WarehouseFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>;
+                };
+                findFirst: {
+                    args: Prisma.WarehouseFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.WarehouseFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>;
+                };
+                findMany: {
+                    args: Prisma.WarehouseFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>[];
+                };
+                create: {
+                    args: Prisma.WarehouseCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>;
+                };
+                createMany: {
+                    args: Prisma.WarehouseCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.WarehouseCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>[];
+                };
+                delete: {
+                    args: Prisma.WarehouseDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>;
+                };
+                update: {
+                    args: Prisma.WarehouseUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>;
+                };
+                deleteMany: {
+                    args: Prisma.WarehouseDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.WarehouseUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.WarehouseUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>[];
+                };
+                upsert: {
+                    args: Prisma.WarehouseUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>;
+                };
+                aggregate: {
+                    args: Prisma.WarehouseAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateWarehouse>;
+                };
+                groupBy: {
+                    args: Prisma.WarehouseGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.WarehouseGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.WarehouseCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.WarehouseCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -550,19 +625,32 @@ export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typ
 export declare const ProductScalarFieldEnum: {
     readonly id: "id";
     readonly name: "name";
-    readonly quantity: "quantity";
+    readonly description: "description";
+    readonly image: "image";
+    readonly count: "count";
+    readonly minAmount: "minAmount";
+    readonly warehouseId: "warehouseId";
     readonly costPrice: "costPrice";
     readonly costCurrencyId: "costCurrencyId";
     readonly salePrice: "salePrice";
     readonly saleCurrencyId: "saleCurrencyId";
     readonly wholesalePrice: "wholesalePrice";
     readonly wholesaleCurrencyId: "wholesaleCurrencyId";
-    readonly lastSoldAt: "lastSoldAt";
+    readonly lastSellingDate: "lastSellingDate";
+    readonly lastSellingPrice: "lastSellingPrice";
+    readonly lastSellingCount: "lastSellingCount";
     readonly createdAt: "createdAt";
     readonly updatedAt: "updatedAt";
     readonly deletedAt: "deletedAt";
 };
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum];
+export declare const WarehouseScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly isMain: "isMain";
+    readonly createdAt: "createdAt";
+};
+export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof typeof WarehouseScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -625,6 +713,7 @@ export type GlobalOmitConfig = {
     device?: Prisma.DeviceOmit;
     employee?: Prisma.EmployeeOmit;
     product?: Prisma.ProductOmit;
+    warehouse?: Prisma.WarehouseOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

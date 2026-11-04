@@ -1,12 +1,4 @@
-import { EPageAccess } from '@/api/staffs';
-
-export interface IStaff {
-  fullName: string;
-  phone: string;
-  permissions: IPemissions[];
-  isSuperAdmin: boolean;
-  pages: EPageAccess[];
-}
+import { EPageAccess } from "@/shared/api/staffs";
 
 export interface IPemissions {
   id: string;

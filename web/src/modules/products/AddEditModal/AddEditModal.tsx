@@ -1,0 +1,331 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import { observer } from 'mobx-react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Form, Image, Input, InputNumber, Modal, Select, Upload, UploadFile, UploadProps } from 'antd';
+import { RcFile } from 'antd/es/upload';
+import { PlusOutlined } from '@ant-design/icons';
+import { currencyStore } from '@/stores/workers';
+import { productsListStore } from '@/stores/products/products-list';
+import { productsApi } from '@/shared/api/product/product';
+import { IAddEditProduct, IAddEditProductForm } from '@/shared/api/product/types';
+import { addNotification } from '@/shared/utils/addNotification';
+import { priceFormat } from '@/shared/utils/priceFormat';
+import { PriceWithCurrency } from '@/components/PriceSelectWithCurrency/PriceSelectWithCurrency';
+import { UPLOAD_ACCEPT } from '../constants';
+
+export const AddEditModal = observer(() => {
+  const [form] = Form.useForm();
+  const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
+  const [bannerFileList, setBannerFileList] = useState<UploadFile[]>([]);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+
+  const { data: currencyMany, isLoading: loadingClients } = useQuery({
+    queryKey: ['getCurrencyMany'],
+    queryFn: () =>
+      currencyStore.getCurrency(),
+  });
+
+  const { data: getSingleProductData } = useQuery({
+    queryKey: ['getSingleProduct', productsListStore.productId],
+    queryFn: () => productsApi.getSingleProducts(productsListStore.productId!),
+  });
+
+  // const { data: warehousesData, isLoading: warehousesLoading } = useQuery({
+  //   queryKey: ['getWarehouses'],
+  //   queryFn: () => warehouseApi.getWarehouses(),
+  // });
+
+  const { mutate: addNewProduct } =
+    useMutation({
+      mutationKey: ['addNewProduct'],
+      mutationFn: (params: IAddEditProduct) => productsApi.addNewProduct(params),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['getProducts'] });
+        addNotification('Maxsulot tahrirlandi!');
+        handleModalClose();
+      },
+      onError: addNotification,
+      onSettled: async () => {
+        setLoading(false);
+      },
+    });
+
+  const { mutate: updateProduct } =
+    useMutation({
+      mutationKey: ['updateProduct'],
+      mutationFn: ({ id, formData }: { id: string, formData: FormData }) => productsApi.updateProduct(id, formData),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['getProducts'] });
+        queryClient.invalidateQueries({ queryKey: ['getSingleOrder'] });
+        handleModalClose();
+      },
+      onError: addNotification,
+      onSettled: async () => {
+        setLoading(false);
+      },
+    });
+
+  const handleBeforeUpload = () => false;
+
+  const handleImgChange: UploadProps['onChange'] = ({
+    fileList: newFileList,
+  }) => {
+    setBannerFileList(newFileList);
+  };
+
+  const handlePreview = async (file: UploadFile) => {
+    let src = file.url as string;
+
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file.originFileObj as RcFile);
+        reader.onload = () => resolve(reader.result as string);
+      });
+    }
+    setPreviewImage(src);
+    setPreviewOpen(true);
+  };
+
+  const handleSubmit = (values: IAddEditProductForm) => {
+    setLoading(true);
+
+    const formData = new FormData();
+
+    // 🔥 IMAGE (binary)
+    const file = bannerFileList[0];
+
+    if (file?.originFileObj) {
+      formData.append('image', file.originFileObj);
+    }
+
+    // 🔥 qolgan fieldlar (string bo‘lishi kerak)
+    formData.append('name', values?.name);
+    formData.append('count', String(values?.count));
+    formData.append('minAmount', String(values?.minAmount || 0));
+    formData.append('description', values?.description || '');
+
+    formData.append(
+      'categoryId',
+      values.categoryId || 'null'
+    );
+
+    formData.append('prices_cost_price', String(values?.cost));
+    formData.append('prices_cost_currencyId', values?.costCurrency);
+
+    formData.append('prices_selling_price', String(values?.price));
+    formData.append('prices_selling_currencyId', values?.priceCurrency);
+
+    formData.append('prices_wholesale_price', String(values?.wholesale));
+    formData.append('prices_wholesale_currencyId', values?.wholesaleCurrency);
+
+    if (productsListStore?.productId) {
+      updateProduct({
+        id: productsListStore?.productId!,
+        formData,
+      } as any);
+
+      return;
+    }
+
+    addNewProduct(formData as any);
+  };
+
+  const handleModalClose = () => {
+    productsListStore.setSingleProduct(null);
+    productsListStore.setProductId(null);
+    productsListStore.setIsOpenAddEditProductModal(false);
+  };
+
+  const handleModalOk = () => {
+    form.submit();
+  };
+
+  const currencyManyData = useMemo(() => (
+    currencyMany?.data?.data.map((currency) => ({
+      value: currency?.id,
+      label: `${currency?.symbol} | ${priceFormat(currency?.exchangeRate)}`,
+      code: currency?.symbol,
+      rate: currency?.exchangeRate,
+    })) || []
+  ), [currencyMany]);
+
+  // const warehouseOptions = useMemo(
+  //   () =>
+  //     warehousesData?.data?.data?.map((warehouse) => ({
+  //       value: warehouse.id,
+  //       label: warehouse.name,
+  //     })) || [],
+  //   [warehousesData]
+  // );
+
+  useEffect(() => {
+    if (getSingleProductData) {
+      const product = getSingleProductData.data;
+
+      form.setFieldsValue({
+        name: product.name,
+        description: product.description,
+        cost: product.prices?.cost?.price,
+        count: product.count,
+        minAmount: product.minAmount,
+        price: product.prices?.selling?.price,
+        categoryId: product.category?.id,
+        wholesale: product.prices?.wholesale?.price,
+        costCurrency: product.prices?.cost?.currency?.id,
+        priceCurrency: product.prices?.selling?.currency?.id,
+        wholesaleCurrency: product.prices?.wholesale?.currency?.id,
+      });
+
+      // Eski rasmni Upload ichiga chiqarish
+      if (product.image) {
+        setBannerFileList([
+          {
+            uid: '-1',
+            name: product.image,
+            status: 'done',
+            url: `https://195-88-87-113.jas-santech.nip.io/uploads/${product.image}`,
+          },
+        ]);
+      }
+    }
+  }, [getSingleProductData]);
+
+  return (
+    <Modal
+      open={productsListStore.isOpenAddEditProductModal}
+      title={productsListStore.singleProduct ? 'Mahsulotni tahrirlash' : 'Mahsulotni qo\'shish'}
+      onCancel={handleModalClose}
+      onOk={handleModalOk}
+      okText={productsListStore.singleProduct ? 'Mahsulotni tahrirlash' : 'Mahsulotni qo\'shish'}
+      cancelText="Bekor qilish"
+      centered
+      confirmLoading={loading}
+    >
+      <Form
+        form={form}
+        onFinish={handleSubmit}
+        layout="vertical"
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Rasm"
+          name="images"
+        >
+          <Upload
+            maxCount={1}
+            onPreview={handlePreview}
+            beforeUpload={handleBeforeUpload}
+            onChange={handleImgChange}
+            fileList={bannerFileList}
+            listType="picture-card"
+            accept={UPLOAD_ACCEPT}
+          >
+            {bannerFileList.length === 0 && (
+              <div>
+                <PlusOutlined />
+                <div>
+                  Upload
+                </div>
+              </div>
+            )}
+          </Upload>
+          {previewImage && (
+            <Image
+              wrapperStyle={{ display: 'none' }}
+              preview={{
+                visible: previewOpen,
+                onVisibleChange: (visible) => setPreviewOpen(visible),
+                afterOpenChange: (visible) => !visible && setPreviewImage(''),
+              }}
+              src={previewImage}
+            />
+          )}
+        </Form.Item>
+
+        <Form.Item
+          label="Mahsulot nomi"
+          rules={[{ required: true }]}
+          name="name"
+        >
+          <Input placeholder="Mahsulot nomi" />
+        </Form.Item>
+        <Form.Item
+          label="Mahsulot soni"
+          rules={[{ required: true }]}
+          name="count"
+        >
+          <InputNumber
+            placeholder="Qoldiq mahsulot"
+            style={{ width: '100%' }}
+            formatter={(value) => priceFormat(value!)}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Ogohlantiruvchi qoldiq"
+          name="minAmount"
+        >
+          <InputNumber
+            placeholder="Ushbu sondan kam qolgan mahsulot haqida sizni ogohlantiramiz!"
+            style={{ width: '100%' }}
+            formatter={(value) => priceFormat(value!)}
+          />
+        </Form.Item>
+        <PriceWithCurrency
+          form={form}
+          valueName="cost"
+          currencyName="costCurrency"
+          label="Sotib olingan narxi"
+          required
+          currencyOptions={currencyManyData}
+        />
+
+        <PriceWithCurrency
+          form={form}
+          valueName="wholesale"
+          currencyName="wholesaleCurrency"
+          label="Ulgurji narxi"
+          required
+          currencyOptions={currencyManyData}
+        />
+
+        <PriceWithCurrency
+          form={form}
+          valueName="price"
+          currencyName="priceCurrency"
+          label="Sotish narxi"
+          required
+          currencyOptions={currencyManyData}
+        />
+
+        {/* <Form.Item
+          label="Sklad"
+          name="categoryId"
+        >
+          <Select
+            placeholder="Skladni tanlang"
+            loading={warehousesLoading}
+            options={warehouseOptions}
+            allowClear
+          />
+        </Form.Item> */}
+
+        <Form.Item
+          label="Mahsulot haqida ma'lumot"
+          name="description"
+        >
+          <Input.TextArea
+            placeholder="Mahsulot haqida ma'lumot"
+            style={{ width: '100%' }}
+            rows={4}
+            showCount
+            autoSize={{ minRows: 2, maxRows: 6 }}
+          />
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+});

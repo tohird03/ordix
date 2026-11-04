@@ -17,7 +17,11 @@ export enum Endpoints {
 
   // CURRENCY
   CurrencyMany = '/currency/many',
-  CurrencyOne = '/currency/one'
+  CurrencyOne = '/currency/one',
+
+  // PRODUCTS
+  ProductsMany = '/products/many',
+  ProductsOne = '/products/one',
 }
 
 const config: Record<string, TStage> = {

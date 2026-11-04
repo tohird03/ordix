@@ -10,3 +10,10 @@ export type IAddEditCurrency = {
   name: string;
   exchangeRate: number;
 }
+
+export interface ICurrencyOptions {
+  value: string;
+  label: string;
+  code: string;
+  rate: number;
+}

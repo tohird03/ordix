@@ -10,5 +10,7 @@ export const ROUTES = {
 
   clientsInfo: '/customers/list',
 
-  currency: '/settings/currencies'
+  currency: '/settings/currencies',
+
+  productList: '/products/list'
 } as const;

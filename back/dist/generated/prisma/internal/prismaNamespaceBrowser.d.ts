@@ -15,6 +15,7 @@ export declare const ModelName: {
     readonly Device: "Device";
     readonly Employee: "Employee";
     readonly Product: "Product";
+    readonly Warehouse: "Warehouse";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -67,19 +68,32 @@ export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typ
 export declare const ProductScalarFieldEnum: {
     readonly id: "id";
     readonly name: "name";
-    readonly quantity: "quantity";
+    readonly description: "description";
+    readonly image: "image";
+    readonly count: "count";
+    readonly minAmount: "minAmount";
+    readonly warehouseId: "warehouseId";
     readonly costPrice: "costPrice";
     readonly costCurrencyId: "costCurrencyId";
     readonly salePrice: "salePrice";
     readonly saleCurrencyId: "saleCurrencyId";
     readonly wholesalePrice: "wholesalePrice";
     readonly wholesaleCurrencyId: "wholesaleCurrencyId";
-    readonly lastSoldAt: "lastSoldAt";
+    readonly lastSellingDate: "lastSellingDate";
+    readonly lastSellingPrice: "lastSellingPrice";
+    readonly lastSellingCount: "lastSellingCount";
     readonly createdAt: "createdAt";
     readonly updatedAt: "updatedAt";
     readonly deletedAt: "deletedAt";
 };
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum];
+export declare const WarehouseScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly isMain: "isMain";
+    readonly createdAt: "createdAt";
+};
+export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof typeof WarehouseScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

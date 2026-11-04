@@ -27,7 +27,8 @@ export const ModelName = {
     Currency: 'Currency',
     Device: 'Device',
     Employee: 'Employee',
-    Product: 'Product'
+    Product: 'Product',
+    Warehouse: 'Warehouse'
 };
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
     ReadUncommitted: 'ReadUncommitted',
@@ -75,17 +76,29 @@ export const EmployeeScalarFieldEnum = {
 export const ProductScalarFieldEnum = {
     id: 'id',
     name: 'name',
-    quantity: 'quantity',
+    description: 'description',
+    image: 'image',
+    count: 'count',
+    minAmount: 'minAmount',
+    warehouseId: 'warehouseId',
     costPrice: 'costPrice',
     costCurrencyId: 'costCurrencyId',
     salePrice: 'salePrice',
     saleCurrencyId: 'saleCurrencyId',
     wholesalePrice: 'wholesalePrice',
     wholesaleCurrencyId: 'wholesaleCurrencyId',
-    lastSoldAt: 'lastSoldAt',
+    lastSellingDate: 'lastSellingDate',
+    lastSellingPrice: 'lastSellingPrice',
+    lastSellingCount: 'lastSellingCount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     deletedAt: 'deletedAt'
+};
+export const WarehouseScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    isMain: 'isMain',
+    createdAt: 'createdAt'
 };
 export const SortOrder = {
     asc: 'asc',
