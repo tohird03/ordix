@@ -160,6 +160,8 @@ export type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? n
 export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
+    readonly Client: "Client";
+    readonly ClientDebt: "ClientDebt";
     readonly Currency: "Currency";
     readonly Device: "Device";
     readonly Employee: "Employee";
@@ -177,10 +179,158 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "currency" | "device" | "employee" | "product" | "warehouse";
+        modelProps: "client" | "clientDebt" | "currency" | "device" | "employee" | "product" | "warehouse";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
+        Client: {
+            payload: Prisma.$ClientPayload<ExtArgs>;
+            fields: Prisma.ClientFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.ClientFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.ClientFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>;
+                };
+                findFirst: {
+                    args: Prisma.ClientFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.ClientFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>;
+                };
+                findMany: {
+                    args: Prisma.ClientFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>[];
+                };
+                create: {
+                    args: Prisma.ClientCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>;
+                };
+                createMany: {
+                    args: Prisma.ClientCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.ClientCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>[];
+                };
+                delete: {
+                    args: Prisma.ClientDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>;
+                };
+                update: {
+                    args: Prisma.ClientUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.ClientDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.ClientUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.ClientUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>[];
+                };
+                upsert: {
+                    args: Prisma.ClientUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>;
+                };
+                aggregate: {
+                    args: Prisma.ClientAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateClient>;
+                };
+                groupBy: {
+                    args: Prisma.ClientGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.ClientGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.ClientCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.ClientCountAggregateOutputType> | number;
+                };
+            };
+        };
+        ClientDebt: {
+            payload: Prisma.$ClientDebtPayload<ExtArgs>;
+            fields: Prisma.ClientDebtFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.ClientDebtFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.ClientDebtFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>;
+                };
+                findFirst: {
+                    args: Prisma.ClientDebtFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.ClientDebtFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>;
+                };
+                findMany: {
+                    args: Prisma.ClientDebtFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>[];
+                };
+                create: {
+                    args: Prisma.ClientDebtCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>;
+                };
+                createMany: {
+                    args: Prisma.ClientDebtCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.ClientDebtCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>[];
+                };
+                delete: {
+                    args: Prisma.ClientDebtDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>;
+                };
+                update: {
+                    args: Prisma.ClientDebtUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.ClientDebtDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.ClientDebtUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.ClientDebtUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>[];
+                };
+                upsert: {
+                    args: Prisma.ClientDebtUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientDebtPayload>;
+                };
+                aggregate: {
+                    args: Prisma.ClientDebtAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateClientDebt>;
+                };
+                groupBy: {
+                    args: Prisma.ClientDebtGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.ClientDebtGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.ClientDebtCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.ClientDebtCountAggregateOutputType> | number;
+                };
+            };
+        };
         Currency: {
             payload: Prisma.$CurrencyPayload<ExtArgs>;
             fields: Prisma.CurrencyFieldRefs;
@@ -582,6 +732,26 @@ export declare const TransactionIsolationLevel: {
     readonly Serializable: "Serializable";
 };
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
+export declare const ClientScalarFieldEnum: {
+    readonly id: "id";
+    readonly fullname: "fullname";
+    readonly phone: "phone";
+    readonly address: "address";
+    readonly latitude: "latitude";
+    readonly longitude: "longitude";
+    readonly lastSellingDate: "lastSellingDate";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+    readonly deletedAt: "deletedAt";
+};
+export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum];
+export declare const ClientDebtScalarFieldEnum: {
+    readonly id: "id";
+    readonly clientId: "clientId";
+    readonly currencyId: "currencyId";
+    readonly amount: "amount";
+};
+export type ClientDebtScalarFieldEnum = (typeof ClientDebtScalarFieldEnum)[keyof typeof ClientDebtScalarFieldEnum];
 export declare const CurrencyScalarFieldEnum: {
     readonly id: "id";
     readonly name: "name";
@@ -668,19 +838,19 @@ export declare const NullsOrder: {
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>;
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>;
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>;
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>;
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>;
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>;
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
 export type EnumDeviceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceType'>;
 export type ListEnumDeviceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceType[]'>;
 export type EnumDeviceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceStatus'>;
 export type ListEnumDeviceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceStatus[]'>;
 export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>;
 export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>;
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>;
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>;
 export type BatchPayload = {
     count: number;
 };
@@ -709,6 +879,8 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 }
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter;
 export type GlobalOmitConfig = {
+    client?: Prisma.ClientOmit;
+    clientDebt?: Prisma.ClientDebtOmit;
     currency?: Prisma.CurrencyOmit;
     device?: Prisma.DeviceOmit;
     employee?: Prisma.EmployeeOmit;

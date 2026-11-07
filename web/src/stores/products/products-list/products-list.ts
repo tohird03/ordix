@@ -26,32 +26,32 @@ class ProductsListStore {
       .then(res => res)
       .catch(addNotification);
 
-  getSingleProductStory = (params: IGetSingleProductParams) =>
-    productsApi.getSingleProductStory(params)
-      .then(res => {
-        this.setSingleProductStory(res?.data?.data);
+  // getSingleProductStory = (params: IGetSingleProductParams) =>
+  //   productsApi.getSingleProductStory(params)
+  //     .then(res => {
+  //       this.setSingleProductStory(res?.data?.data);
 
-        return res;
-      })
-      .catch(addNotification);
+  //       return res;
+  //     })
+  //     .catch(addNotification);
 
-  getSingleProductsCount = (params: IGetSingleProductParams) =>
-    productsApi.getSingleProductStoryCounts(params)
-      .then(res => {
-        this.setSingleProductStoryCount(res?.data[0]);
+  // getSingleProductsCount = (params: IGetSingleProductParams) =>
+  //   productsApi.getSingleProductStoryCounts(params)
+  //     .then(res => {
+  //       this.setSingleProductStoryCount(res?.data[0]);
 
-        return res;
-      })
-      .catch(addNotification);
+  //       return res;
+  //     })
+  //     .catch(addNotification);
 
-  getSingleProductStoryCount = (params: IGetSingleProductParams) =>
-    productsApi.getSingleProductStory(params)
-      .then(res => {
-        this.setSingleProductStory(res?.data?.data);
+  // getSingleProductStoryCount = (params: IGetSingleProductParams) =>
+  //   productsApi.getSingleProductStory(params)
+  //     .then(res => {
+  //       this.setSingleProductStory(res?.data?.data);
 
-        return res;
-      })
-      .catch(addNotification);
+  //       return res;
+  //     })
+  //     .catch(addNotification);
 
   getSingleProducts = (productId: string) =>
     productsApi.getSingleProducts(productId)

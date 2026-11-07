@@ -135,6 +135,7 @@ export type CurrencyWhereInput = {
     costProducts?: Prisma.ProductListRelationFilter;
     saleProducts?: Prisma.ProductListRelationFilter;
     wholesaleProducts?: Prisma.ProductListRelationFilter;
+    clientDebts?: Prisma.ClientDebtListRelationFilter;
 };
 export type CurrencyOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -147,6 +148,7 @@ export type CurrencyOrderByWithRelationInput = {
     costProducts?: Prisma.ProductOrderByRelationAggregateInput;
     saleProducts?: Prisma.ProductOrderByRelationAggregateInput;
     wholesaleProducts?: Prisma.ProductOrderByRelationAggregateInput;
+    clientDebts?: Prisma.ClientDebtOrderByRelationAggregateInput;
 };
 export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -162,6 +164,7 @@ export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
     costProducts?: Prisma.ProductListRelationFilter;
     saleProducts?: Prisma.ProductListRelationFilter;
     wholesaleProducts?: Prisma.ProductListRelationFilter;
+    clientDebts?: Prisma.ClientDebtListRelationFilter;
 }, "id" | "symbol">;
 export type CurrencyOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -200,6 +203,7 @@ export type CurrencyCreateInput = {
     costProducts?: Prisma.ProductCreateNestedManyWithoutCostCurrencyInput;
     saleProducts?: Prisma.ProductCreateNestedManyWithoutSaleCurrencyInput;
     wholesaleProducts?: Prisma.ProductCreateNestedManyWithoutWholesaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyUncheckedCreateInput = {
     id?: string;
@@ -212,6 +216,7 @@ export type CurrencyUncheckedCreateInput = {
     costProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutCostCurrencyInput;
     saleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutSaleCurrencyInput;
     wholesaleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutWholesaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtUncheckedCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -224,6 +229,7 @@ export type CurrencyUpdateInput = {
     costProducts?: Prisma.ProductUpdateManyWithoutCostCurrencyNestedInput;
     saleProducts?: Prisma.ProductUpdateManyWithoutSaleCurrencyNestedInput;
     wholesaleProducts?: Prisma.ProductUpdateManyWithoutWholesaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -236,6 +242,7 @@ export type CurrencyUncheckedUpdateInput = {
     costProducts?: Prisma.ProductUncheckedUpdateManyWithoutCostCurrencyNestedInput;
     saleProducts?: Prisma.ProductUncheckedUpdateManyWithoutSaleCurrencyNestedInput;
     wholesaleProducts?: Prisma.ProductUncheckedUpdateManyWithoutWholesaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUncheckedUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyCreateManyInput = {
     id?: string;
@@ -263,6 +270,10 @@ export type CurrencyUncheckedUpdateManyInput = {
     isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type CurrencyScalarRelationFilter = {
+    is?: Prisma.CurrencyWhereInput;
+    isNot?: Prisma.CurrencyWhereInput;
 };
 export type CurrencyCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
@@ -297,25 +308,20 @@ export type CurrencyMinOrderByAggregateInput = {
 export type CurrencySumOrderByAggregateInput = {
     exchangeRate?: Prisma.SortOrder;
 };
-export type CurrencyScalarRelationFilter = {
-    is?: Prisma.CurrencyWhereInput;
-    isNot?: Prisma.CurrencyWhereInput;
+export type CurrencyCreateNestedOneWithoutClientDebtsInput = {
+    create?: Prisma.XOR<Prisma.CurrencyCreateWithoutClientDebtsInput, Prisma.CurrencyUncheckedCreateWithoutClientDebtsInput>;
+    connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutClientDebtsInput;
+    connect?: Prisma.CurrencyWhereUniqueInput;
 };
-export type StringFieldUpdateOperationsInput = {
-    set?: string;
-};
-export type IntFieldUpdateOperationsInput = {
-    set?: number;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
+export type CurrencyUpdateOneRequiredWithoutClientDebtsNestedInput = {
+    create?: Prisma.XOR<Prisma.CurrencyCreateWithoutClientDebtsInput, Prisma.CurrencyUncheckedCreateWithoutClientDebtsInput>;
+    connectOrCreate?: Prisma.CurrencyCreateOrConnectWithoutClientDebtsInput;
+    upsert?: Prisma.CurrencyUpsertWithoutClientDebtsInput;
+    connect?: Prisma.CurrencyWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutClientDebtsInput, Prisma.CurrencyUpdateWithoutClientDebtsInput>, Prisma.CurrencyUncheckedUpdateWithoutClientDebtsInput>;
 };
 export type BoolFieldUpdateOperationsInput = {
     set?: boolean;
-};
-export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string;
 };
 export type CurrencyCreateNestedOneWithoutCostProductsInput = {
     create?: Prisma.XOR<Prisma.CurrencyCreateWithoutCostProductsInput, Prisma.CurrencyUncheckedCreateWithoutCostProductsInput>;
@@ -353,6 +359,67 @@ export type CurrencyUpdateOneRequiredWithoutWholesaleProductsNestedInput = {
     connect?: Prisma.CurrencyWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.CurrencyUpdateToOneWithWhereWithoutWholesaleProductsInput, Prisma.CurrencyUpdateWithoutWholesaleProductsInput>, Prisma.CurrencyUncheckedUpdateWithoutWholesaleProductsInput>;
 };
+export type CurrencyCreateWithoutClientDebtsInput = {
+    id?: string;
+    name: string;
+    symbol: string;
+    exchangeRate: number;
+    isDefault?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    costProducts?: Prisma.ProductCreateNestedManyWithoutCostCurrencyInput;
+    saleProducts?: Prisma.ProductCreateNestedManyWithoutSaleCurrencyInput;
+    wholesaleProducts?: Prisma.ProductCreateNestedManyWithoutWholesaleCurrencyInput;
+};
+export type CurrencyUncheckedCreateWithoutClientDebtsInput = {
+    id?: string;
+    name: string;
+    symbol: string;
+    exchangeRate: number;
+    isDefault?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    costProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutCostCurrencyInput;
+    saleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutSaleCurrencyInput;
+    wholesaleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutWholesaleCurrencyInput;
+};
+export type CurrencyCreateOrConnectWithoutClientDebtsInput = {
+    where: Prisma.CurrencyWhereUniqueInput;
+    create: Prisma.XOR<Prisma.CurrencyCreateWithoutClientDebtsInput, Prisma.CurrencyUncheckedCreateWithoutClientDebtsInput>;
+};
+export type CurrencyUpsertWithoutClientDebtsInput = {
+    update: Prisma.XOR<Prisma.CurrencyUpdateWithoutClientDebtsInput, Prisma.CurrencyUncheckedUpdateWithoutClientDebtsInput>;
+    create: Prisma.XOR<Prisma.CurrencyCreateWithoutClientDebtsInput, Prisma.CurrencyUncheckedCreateWithoutClientDebtsInput>;
+    where?: Prisma.CurrencyWhereInput;
+};
+export type CurrencyUpdateToOneWithWhereWithoutClientDebtsInput = {
+    where?: Prisma.CurrencyWhereInput;
+    data: Prisma.XOR<Prisma.CurrencyUpdateWithoutClientDebtsInput, Prisma.CurrencyUncheckedUpdateWithoutClientDebtsInput>;
+};
+export type CurrencyUpdateWithoutClientDebtsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    symbol?: Prisma.StringFieldUpdateOperationsInput | string;
+    exchangeRate?: Prisma.IntFieldUpdateOperationsInput | number;
+    isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    costProducts?: Prisma.ProductUpdateManyWithoutCostCurrencyNestedInput;
+    saleProducts?: Prisma.ProductUpdateManyWithoutSaleCurrencyNestedInput;
+    wholesaleProducts?: Prisma.ProductUpdateManyWithoutWholesaleCurrencyNestedInput;
+};
+export type CurrencyUncheckedUpdateWithoutClientDebtsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    symbol?: Prisma.StringFieldUpdateOperationsInput | string;
+    exchangeRate?: Prisma.IntFieldUpdateOperationsInput | number;
+    isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    costProducts?: Prisma.ProductUncheckedUpdateManyWithoutCostCurrencyNestedInput;
+    saleProducts?: Prisma.ProductUncheckedUpdateManyWithoutSaleCurrencyNestedInput;
+    wholesaleProducts?: Prisma.ProductUncheckedUpdateManyWithoutWholesaleCurrencyNestedInput;
+};
 export type CurrencyCreateWithoutCostProductsInput = {
     id?: string;
     name: string;
@@ -363,6 +430,7 @@ export type CurrencyCreateWithoutCostProductsInput = {
     updatedAt?: Date | string;
     saleProducts?: Prisma.ProductCreateNestedManyWithoutSaleCurrencyInput;
     wholesaleProducts?: Prisma.ProductCreateNestedManyWithoutWholesaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyUncheckedCreateWithoutCostProductsInput = {
     id?: string;
@@ -374,6 +442,7 @@ export type CurrencyUncheckedCreateWithoutCostProductsInput = {
     updatedAt?: Date | string;
     saleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutSaleCurrencyInput;
     wholesaleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutWholesaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtUncheckedCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyCreateOrConnectWithoutCostProductsInput = {
     where: Prisma.CurrencyWhereUniqueInput;
@@ -389,6 +458,7 @@ export type CurrencyCreateWithoutSaleProductsInput = {
     updatedAt?: Date | string;
     costProducts?: Prisma.ProductCreateNestedManyWithoutCostCurrencyInput;
     wholesaleProducts?: Prisma.ProductCreateNestedManyWithoutWholesaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyUncheckedCreateWithoutSaleProductsInput = {
     id?: string;
@@ -400,6 +470,7 @@ export type CurrencyUncheckedCreateWithoutSaleProductsInput = {
     updatedAt?: Date | string;
     costProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutCostCurrencyInput;
     wholesaleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutWholesaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtUncheckedCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyCreateOrConnectWithoutSaleProductsInput = {
     where: Prisma.CurrencyWhereUniqueInput;
@@ -415,6 +486,7 @@ export type CurrencyCreateWithoutWholesaleProductsInput = {
     updatedAt?: Date | string;
     costProducts?: Prisma.ProductCreateNestedManyWithoutCostCurrencyInput;
     saleProducts?: Prisma.ProductCreateNestedManyWithoutSaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyUncheckedCreateWithoutWholesaleProductsInput = {
     id?: string;
@@ -426,6 +498,7 @@ export type CurrencyUncheckedCreateWithoutWholesaleProductsInput = {
     updatedAt?: Date | string;
     costProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutCostCurrencyInput;
     saleProducts?: Prisma.ProductUncheckedCreateNestedManyWithoutSaleCurrencyInput;
+    clientDebts?: Prisma.ClientDebtUncheckedCreateNestedManyWithoutCurrencyInput;
 };
 export type CurrencyCreateOrConnectWithoutWholesaleProductsInput = {
     where: Prisma.CurrencyWhereUniqueInput;
@@ -450,6 +523,7 @@ export type CurrencyUpdateWithoutCostProductsInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     saleProducts?: Prisma.ProductUpdateManyWithoutSaleCurrencyNestedInput;
     wholesaleProducts?: Prisma.ProductUpdateManyWithoutWholesaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyUncheckedUpdateWithoutCostProductsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -461,6 +535,7 @@ export type CurrencyUncheckedUpdateWithoutCostProductsInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     saleProducts?: Prisma.ProductUncheckedUpdateManyWithoutSaleCurrencyNestedInput;
     wholesaleProducts?: Prisma.ProductUncheckedUpdateManyWithoutWholesaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUncheckedUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyUpsertWithoutSaleProductsInput = {
     update: Prisma.XOR<Prisma.CurrencyUpdateWithoutSaleProductsInput, Prisma.CurrencyUncheckedUpdateWithoutSaleProductsInput>;
@@ -481,6 +556,7 @@ export type CurrencyUpdateWithoutSaleProductsInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     costProducts?: Prisma.ProductUpdateManyWithoutCostCurrencyNestedInput;
     wholesaleProducts?: Prisma.ProductUpdateManyWithoutWholesaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyUncheckedUpdateWithoutSaleProductsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -492,6 +568,7 @@ export type CurrencyUncheckedUpdateWithoutSaleProductsInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     costProducts?: Prisma.ProductUncheckedUpdateManyWithoutCostCurrencyNestedInput;
     wholesaleProducts?: Prisma.ProductUncheckedUpdateManyWithoutWholesaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUncheckedUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyUpsertWithoutWholesaleProductsInput = {
     update: Prisma.XOR<Prisma.CurrencyUpdateWithoutWholesaleProductsInput, Prisma.CurrencyUncheckedUpdateWithoutWholesaleProductsInput>;
@@ -512,6 +589,7 @@ export type CurrencyUpdateWithoutWholesaleProductsInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     costProducts?: Prisma.ProductUpdateManyWithoutCostCurrencyNestedInput;
     saleProducts?: Prisma.ProductUpdateManyWithoutSaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyUncheckedUpdateWithoutWholesaleProductsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -523,16 +601,19 @@ export type CurrencyUncheckedUpdateWithoutWholesaleProductsInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     costProducts?: Prisma.ProductUncheckedUpdateManyWithoutCostCurrencyNestedInput;
     saleProducts?: Prisma.ProductUncheckedUpdateManyWithoutSaleCurrencyNestedInput;
+    clientDebts?: Prisma.ClientDebtUncheckedUpdateManyWithoutCurrencyNestedInput;
 };
 export type CurrencyCountOutputType = {
     costProducts: number;
     saleProducts: number;
     wholesaleProducts: number;
+    clientDebts: number;
 };
 export type CurrencyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     costProducts?: boolean | CurrencyCountOutputTypeCountCostProductsArgs;
     saleProducts?: boolean | CurrencyCountOutputTypeCountSaleProductsArgs;
     wholesaleProducts?: boolean | CurrencyCountOutputTypeCountWholesaleProductsArgs;
+    clientDebts?: boolean | CurrencyCountOutputTypeCountClientDebtsArgs;
 };
 export type CurrencyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.CurrencyCountOutputTypeSelect<ExtArgs> | null;
@@ -546,6 +627,9 @@ export type CurrencyCountOutputTypeCountSaleProductsArgs<ExtArgs extends runtime
 export type CurrencyCountOutputTypeCountWholesaleProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.ProductWhereInput;
 };
+export type CurrencyCountOutputTypeCountClientDebtsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.ClientDebtWhereInput;
+};
 export type CurrencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
@@ -557,6 +641,7 @@ export type CurrencySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
     costProducts?: boolean | Prisma.Currency$costProductsArgs<ExtArgs>;
     saleProducts?: boolean | Prisma.Currency$saleProductsArgs<ExtArgs>;
     wholesaleProducts?: boolean | Prisma.Currency$wholesaleProductsArgs<ExtArgs>;
+    clientDebts?: boolean | Prisma.Currency$clientDebtsArgs<ExtArgs>;
     _count?: boolean | Prisma.CurrencyCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["currency"]>;
 export type CurrencySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -591,6 +676,7 @@ export type CurrencyInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
     costProducts?: boolean | Prisma.Currency$costProductsArgs<ExtArgs>;
     saleProducts?: boolean | Prisma.Currency$saleProductsArgs<ExtArgs>;
     wholesaleProducts?: boolean | Prisma.Currency$wholesaleProductsArgs<ExtArgs>;
+    clientDebts?: boolean | Prisma.Currency$clientDebtsArgs<ExtArgs>;
     _count?: boolean | Prisma.CurrencyCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type CurrencyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -601,6 +687,7 @@ export type $CurrencyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
         costProducts: Prisma.$ProductPayload<ExtArgs>[];
         saleProducts: Prisma.$ProductPayload<ExtArgs>[];
         wholesaleProducts: Prisma.$ProductPayload<ExtArgs>[];
+        clientDebts: Prisma.$ClientDebtPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -665,6 +752,7 @@ export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends runtime
     costProducts<T extends Prisma.Currency$costProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$costProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     saleProducts<T extends Prisma.Currency$saleProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$saleProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     wholesaleProducts<T extends Prisma.Currency$wholesaleProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$wholesaleProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    clientDebts<T extends Prisma.Currency$clientDebtsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Currency$clientDebtsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientDebtPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
     finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
@@ -808,6 +896,17 @@ export type Currency$wholesaleProductsArgs<ExtArgs extends runtime.Types.Extensi
     take?: number;
     skip?: number;
     distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[];
+};
+export type Currency$clientDebtsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    select?: Prisma.ClientDebtSelect<ExtArgs> | null;
+    omit?: Prisma.ClientDebtOmit<ExtArgs> | null;
+    include?: Prisma.ClientDebtInclude<ExtArgs> | null;
+    where?: Prisma.ClientDebtWhereInput;
+    orderBy?: Prisma.ClientDebtOrderByWithRelationInput | Prisma.ClientDebtOrderByWithRelationInput[];
+    cursor?: Prisma.ClientDebtWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.ClientDebtScalarFieldEnum | Prisma.ClientDebtScalarFieldEnum[];
 };
 export type CurrencyDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.CurrencySelect<ExtArgs> | null;

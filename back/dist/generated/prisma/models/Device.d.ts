@@ -460,17 +460,11 @@ export type DeviceListRelationFilter = {
 export type DeviceOrderByRelationAggregateInput = {
     _count?: Prisma.SortOrder;
 };
-export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null;
-};
 export type EnumDeviceTypeFieldUpdateOperationsInput = {
     set?: $Enums.DeviceType;
 };
 export type EnumDeviceStatusFieldUpdateOperationsInput = {
     set?: $Enums.DeviceStatus;
-};
-export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null;
 };
 export type DeviceCreateNestedManyWithoutEmployeeInput = {
     create?: Prisma.XOR<Prisma.DeviceCreateWithoutEmployeeInput, Prisma.DeviceUncheckedCreateWithoutEmployeeInput> | Prisma.DeviceCreateWithoutEmployeeInput[] | Prisma.DeviceUncheckedCreateWithoutEmployeeInput[];

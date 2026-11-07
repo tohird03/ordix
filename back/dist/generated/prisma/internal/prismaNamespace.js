@@ -24,6 +24,8 @@ export const DbNull = runtime.DbNull;
 export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 export const ModelName = {
+    Client: 'Client',
+    ClientDebt: 'ClientDebt',
     Currency: 'Currency',
     Device: 'Device',
     Employee: 'Employee',
@@ -36,6 +38,24 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
     RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
 });
+export const ClientScalarFieldEnum = {
+    id: 'id',
+    fullname: 'fullname',
+    phone: 'phone',
+    address: 'address',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    lastSellingDate: 'lastSellingDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt'
+};
+export const ClientDebtScalarFieldEnum = {
+    id: 'id',
+    clientId: 'clientId',
+    currencyId: 'currencyId',
+    amount: 'amount'
+};
 export const CurrencyScalarFieldEnum = {
     id: 'id',
     name: 'name',

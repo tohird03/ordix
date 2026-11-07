@@ -30,6 +30,12 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     $extends: runtime.Types.Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<OmitOpts>, ExtArgs, runtime.Types.Utils.Call<Prisma.TypeMapCb<OmitOpts>, {
         extArgs: ExtArgs;
     }>>;
+    get client(): Prisma.ClientDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    get clientDebt(): Prisma.ClientDebtDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
     get currency(): Prisma.CurrencyDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;

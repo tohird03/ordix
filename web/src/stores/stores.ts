@@ -1,6 +1,7 @@
 import {authStore} from './auth';
 import {profileStore} from './profile';
 import {staffsStore, devicesStore, currencyStore} from './workers';
+import { clientsInfoStore } from './clients-info';
 
 export const stores = {
   authStore,
@@ -8,6 +9,7 @@ export const stores = {
   staffsStore,
   devicesStore,
   currencyStore,
+  clientsInfoStore,
 };
 
 export const resetStores = () => {
@@ -16,4 +18,5 @@ export const resetStores = () => {
   staffsStore.reset();
   devicesStore.reset();
   currencyStore.reset();
+  clientsInfoStore.reset();
 };

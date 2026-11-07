@@ -1,3 +1,5 @@
+export type * from './models/Client.js';
+export type * from './models/ClientDebt.js';
 export type * from './models/Currency.js';
 export type * from './models/Device.js';
 export type * from './models/Employee.js';

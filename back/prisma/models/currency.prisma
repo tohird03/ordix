@@ -11,4 +11,5 @@ model Currency {
   costProducts      Product[] @relation("ProductCost")
   saleProducts      Product[] @relation("ProductSale")
   wholesaleProducts Product[] @relation("ProductWholesale")
+  clientDebts ClientDebt[]
 }

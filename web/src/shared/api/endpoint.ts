@@ -22,6 +22,10 @@ export enum Endpoints {
   // PRODUCTS
   ProductsMany = '/products/many',
   ProductsOne = '/products/one',
+
+  // CLIENTS
+  ClientsMany = '/clients/many',
+  ClientsOne = '/clients/one',
 }
 
 const config: Record<string, TStage> = {

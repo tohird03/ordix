@@ -6,12 +6,10 @@ import { Button, Input, Table, Tooltip, Typography } from 'antd';
 import classNames from 'classnames';
 import { getPaginationParams } from '@/shared/utils/paginationParams';
 import { AddEditModal } from './AddEditModal';
-import styles from './product-list.scss';
+import styles from './product-list.module.scss';
 import { productsListColumn } from './constants';
 import { authStore } from '@/stores/auth';
 import { productsListStore } from '@/stores/products/products-list';
-import { productsApi } from '@/shared/api/product/product';
-import { addNotification } from '@/shared/utils/addNotification';
 import { IProducts } from '@/shared/api/product/types';
 import { priceFormat } from '@/shared/utils/priceFormat';
 
@@ -49,25 +47,25 @@ export const ProductsList = observer(() => {
   };
 
   const handleDownloadExcel = () => {
-    setDownLoadLoading(true);
-    productsApi.getProductsToExcel({
-      pageNumber: productsListStore.pageNumber,
-      pageSize: productsListStore.pageSize,
-      search: productsListStore.search!,
-    })
-      .then(res => {
-        const url = URL.createObjectURL(new Blob([res]));
-        const a = document.createElement('a');
+    // setDownLoadLoading(true);
+    // productsApi.getProductsToExcel({
+    //   pageNumber: productsListStore.pageNumber,
+    //   pageSize: productsListStore.pageSize,
+    //   search: productsListStore.search!,
+    // })
+    //   .then(res => {
+    //     const url = URL.createObjectURL(new Blob([res]));
+    //     const a = document.createElement('a');
 
-        a.href = url;
-        a.download = 'mahsulotlar.xlsx';
-        a.click();
-        URL.revokeObjectURL(url);
-      })
-      .catch(addNotification)
-      .finally(() => {
-        setDownLoadLoading(false);
-      });
+    //     a.href = url;
+    //     a.download = 'mahsulotlar.xlsx';
+    //     a.click();
+    //     URL.revokeObjectURL(url);
+    //   })
+    //   .catch(addNotification)
+    //   .finally(() => {
+    //     setDownLoadLoading(false);
+    //   });
   };
 
   useEffect(() => () => {

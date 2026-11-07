@@ -32,6 +32,7 @@ export const productsListColumn: ColumnType<IProducts>[] = [
     render: (value, record) => (
       <Image
         width={50}
+        height={50}
         alt="basic"
         src={imageUrlWithBase(record?.image)}
       />

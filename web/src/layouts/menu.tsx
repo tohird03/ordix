@@ -11,6 +11,7 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 import React from 'react';
+import { ROUTES } from '@/router/links';
 
 export interface NavChild {
   key: string;
@@ -27,10 +28,10 @@ export interface NavItem {
 export const nav: NavItem[] = [
   { key: '/dashboard', icon: <AppstoreOutlined />, label: 'Bosh sahifa' },
   {
-    key: 'customers', icon: <TeamOutlined />, label: 'Mijozlar',
+    key: 'clients', icon: <TeamOutlined />, label: 'Mijozlar',
     children: [
-      { key: '/customers/list', label: "Mijozlar ro'yxati" },
-      { key: '/customers/payments', label: "To'lovlar" },
+      { key: ROUTES.clientsInfo, label: "Mijozlar ro'yxati" },
+      { key: '/clients/payments', label: "To'lovlar" },
     ],
   },
   {

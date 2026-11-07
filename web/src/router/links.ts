@@ -8,7 +8,7 @@ export const ROUTES = {
   signIn: '/signin',
   myProfileHome: '/my-profile',
 
-  clientsInfo: '/customers/list',
+  clientsInfo: '/clients/list',
 
   currency: '/settings/currencies',
 

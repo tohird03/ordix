@@ -108,10 +108,10 @@ export const AddEditModal = observer(() => {
     formData.append('minAmount', String(values?.minAmount || 0));
     formData.append('description', values?.description || '');
 
-    formData.append(
-      'categoryId',
-      values.categoryId || 'null'
-    );
+    // formData.append(
+    //   'categoryId',
+    //   values.categoryId || '7f3a9c21-6d84-4b52-9e17-a2c8f5d03164'
+    // );
 
     formData.append('prices_cost_price', String(values?.cost));
     formData.append('prices_cost_currencyId', values?.costCurrency);
